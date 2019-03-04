@@ -48,8 +48,11 @@
   <ItemGroup>
     <Compile Include="Domain\UserBase.cs" />
     <Compile Include="Domain\UserDomain.cs" />
+    <Compile Include="Requests\UserLoginAddRequest.cs" />
     <Compile Include="Interfaces\IUserAuthData.cs" />
+    <Compile Include="LoginDomain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Requests\LoginRequest.cs" />
     <Compile Include="Requests\UserAddRequest.cs" />
     <Compile Include="Requests\UserEmailAddRequest.cs" />
     <Compile Include="Requests\UserUpdateRequest.cs" />
