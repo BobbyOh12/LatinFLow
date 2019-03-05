@@ -76,7 +76,7 @@ class Header extends React.Component {
           <Hidden smDown implementation="css" className={classes.hidden}>
             <div className={classes.collapse}>{links}</div>
           </Hidden>
-          <Hidden mdUp>
+          {/* <Hidden mdUp>
             <IconButton
               color="inherit"
               aria-label="open drawer"
@@ -84,9 +84,9 @@ class Header extends React.Component {
             >
               <Menu />
             </IconButton>
-          </Hidden>
+          </Hidden> */}
         </Toolbar>
-        <Hidden mdUp implementation="css">
+        {/* <Hidden mdUp implementation="css">
           <Drawer
             variant="temporary"
             anchor={"right"}
@@ -104,9 +104,9 @@ class Header extends React.Component {
             >
               <Close />
             </IconButton>
+            </Drawer>
             <div className={classes.appResponsive}>{links}</div>
-          </Drawer>
-        </Hidden>
+        </Hidden> */}
       </AppBar>
     );
   }

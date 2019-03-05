@@ -7,12 +7,9 @@ using System.Threading.Tasks;
 
 namespace LatinFlow.Models.Requests
 {
-    public class LoginRequest
+    public class LoginUpdateRequest
     {
         [Required]
         public string Email { get; set; }
-
-        [Required]
-        public string Password { get; set; }
     }
 }

@@ -88,16 +88,72 @@ function HeaderLinks({ ...props }) {
   return (
     <List className={classes.list + " " + classes.mlAuto}>
       <ListItem className={classes.listItem}>
-        Classes
+        {/* <Button
+          noLiPadding
+          navDropdown
+          hoverColor={dropdownHoverColor}
+          buttonText="Home"
+          buttonProps={{
+            className: classes.navLink,
+            color: "transparent"
+          }}
+          buttonIcon={ViewCarousel}
+        /> */}
+        <Button
+          // href="#pablo"
+          className={classes.navLink}
+          onClick={e => e.preventDefault()}
+          color="transparent"
+        >
+          <Link to="/">
+            Home
+        </Link>
+        </Button>
       </ListItem>
       <ListItem className={classes.listItem}>
-        Private Lesson
+        <Button
+          // href="#pablo"
+          className={classes.navLink}
+          onClick={e => e.preventDefault()}
+          color="transparent"
+        >
+          <Link to="/">
+            Classes
+          </Link>
+        </Button>
       </ListItem>
       <ListItem className={classes.listItem}>
-        Events
+        <Button
+          // href="#pablo"
+          className={classes.navLink}
+          onClick={e => e.preventDefault()}
+          color="transparent"
+        >
+          Events
+        </Button>
       </ListItem>
       <ListItem className={classes.listItem}>
-        Store
+        <Button
+          // href="#pablo"
+          className={classes.navLink}
+          onClick={e => e.preventDefault()}
+          color="transparent"
+        >
+          Store
+        </Button>
+      </ListItem>
+      <ListItem className={classes.listItem}>
+        <Button
+          // href="#pablo"
+          className={classes.registerNavLink}
+          onClick={e => e.preventDefault()}
+          color="rose"
+          round
+        >
+          <Link to="/login-page">
+            Login
+        </Link>
+        </Button>
       </ListItem>
     </List >
   );

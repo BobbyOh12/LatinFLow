@@ -1,5 +1,7 @@
-﻿using LatinFlow.Models.Domain;
+﻿using LatinFlow.Models;
+using LatinFlow.Models.Domain;
 using LatinFlow.Models.Request;
+using LatinFlow.Models.Requests;
 using LatinFlow.Models.Response;
 using LatinFlow.Models.Responses;
 using LatinFlow.Services;
@@ -20,18 +22,36 @@ namespace LatinFlow.Web.Controllers.Api
 
         public UserController(IUserService svc)
         {
-            _svc = svc;
+            _svc = svc; 
         }
 
-        [Route("insert"), HttpPost]
-        public HttpResponseMessage Insert(UserAddRequest model)
+        [Route("login"), HttpPost]
+        public HttpResponseMessage LogIn(LoginRequest model)
+        {
+            try
+            {
+                ItemResponse<IUserAuthData> response = new ItemResponse<IUserAuthData>();
+                response.Item = _svc.LogIn(model.Email, model.Password);
+                if (response.Item != null)
+                    return Request.CreateResponse(HttpStatusCode.OK, response);
+                else
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Invalid credentials");
+            }
+             catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+            }
+        }
+
+        [Route("create"), HttpPost]
+        public HttpResponseMessage Create(LoginAddRequest model)
         {
             try
             {
                 if(ModelState.IsValid)
                 {
                     ItemResponse<int> response = new ItemResponse<int>();
-                    response.Item = _svc.Insert(model);
+                    response.Item = _svc.Create(model);
                     return Request.CreateResponse(HttpStatusCode.OK, response);
                 }
                 else

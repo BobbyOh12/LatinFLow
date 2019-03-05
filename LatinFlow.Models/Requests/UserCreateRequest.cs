@@ -1,18 +1,16 @@
-﻿using System;
+﻿using LatinFlow.Models.Request;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace LatinFlow.Models.Requests
 {
-    public class LoginRequest
+    public class UserCreateRequest : UserAddRequest
     {
-        [Required]
-        public string Email { get; set; }
-
-        [Required]
+        public string Salt { get; set; }
+        public string PasswordHash { get; set; }
         public string Password { get; set; }
     }
 }

@@ -24,8 +24,42 @@ import CustomInput from "components/CustomInput/CustomInput.jsx";
 import loginPageStyle from "assets/jss/material-kit-pro-react/views/loginPageStyle.jsx";
 
 import image from "assets/img/ballroom.jpg";
+import UserService from "../../services/UserService";
 
 class LoginPage extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      email: '',
+      password: ''
+    }
+  }
+
+  handleChange = evt => {
+    const key = evt.target.name;
+    const val = evt.target.value;
+    this.setState({
+      [key]: val
+    })
+  }
+
+  handleClick = evt => {
+    const data = {
+      email: this.state.email,
+      password: this.state.password
+    }
+    console.log(data)
+    UserService.login(data, this.onLoginSuccess, this.onError)
+  }
+
+  onLoginSuccess = response => {
+    console.log(response, "login success")
+  }
+
+  onError = error => {
+    console.log(error, "invalid credentials")
+  }
+
   componentDidMount() {
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
@@ -88,28 +122,17 @@ class LoginPage extends React.Component {
                     </CardHeader>
                     <CardBody signup>
                       <CustomInput
-                        id="first"
-                        formControlProps={{
-                          fullWidth: true
-                        }}
-                        inputProps={{
-                          placeholder: "First Name...",
-                          type: "text",
-                          startAdornment: (
-                            <InputAdornment position="start">
-                              <Face className={classes.inputIconsColor} />
-                            </InputAdornment>
-                          )
-                        }}
-                      />
-                      <CustomInput
                         id="email"
+                        name="email"
+                        value={this.state.email}
                         formControlProps={{
                           fullWidth: true
                         }}
+                        onChange={this.handleChange}
                         inputProps={{
                           placeholder: "Email...",
                           type: "email",
+                          name: "email",
                           startAdornment: (
                             <InputAdornment position="start">
                               <Email className={classes.inputIconsColor} />
@@ -118,13 +141,18 @@ class LoginPage extends React.Component {
                         }}
                       />
                       <CustomInput
-                        id="pass"
+                        id="password"
+                        name="password"
+                        type="password"
+                        value={this.state.password}
+                        onChange={this.handleChange}
                         formControlProps={{
                           fullWidth: true
                         }}
                         inputProps={{
                           placeholder: "Password",
                           type: "password",
+                          name: "password",
                           startAdornment: (
                             <InputAdornment position="start">
                               <Icon className={classes.inputIconsColor}>
@@ -136,7 +164,7 @@ class LoginPage extends React.Component {
                       />
                     </CardBody>
                     <div className={classes.textCenter}>
-                      <Button simple color="github" size="lg">
+                      <Button onClick={this.handleClick} simple color="github" size="lg">
                         Login
                       </Button>
                     </div>

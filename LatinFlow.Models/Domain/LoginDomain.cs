@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LatinFlow.Models
+namespace LatinFlow.Models.Domain
 {
     public class LoginDomain
     {

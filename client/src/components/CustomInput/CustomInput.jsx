@@ -76,6 +76,10 @@ function CustomInput({ ...props }) {
         }}
         id={id}
         {...inputProps}
+        name={props.name}
+        type={props.type}
+        value={props.value}
+        onChange={props.onChange}
       />
       {error ? (
         <Clear className={classes.feedback + " " + classes.labelRootError} />
@@ -96,7 +100,7 @@ CustomInput.propTypes = {
   inputRootCustomClasses: PropTypes.string,
   error: PropTypes.bool,
   success: PropTypes.bool,
-  white: PropTypes.bool
+  white: PropTypes.bool,
 };
 
 export default withStyles(customInputStyle)(CustomInput);
