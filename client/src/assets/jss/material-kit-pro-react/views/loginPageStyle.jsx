@@ -5,7 +5,6 @@ import {
   blackColor,
   whiteColor,
   grayColor,
-  secondaryColor,
   hexToRgb
 } from "assets/jss/material-kit-pro-react.jsx";
 

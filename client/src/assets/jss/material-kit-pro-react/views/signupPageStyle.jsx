@@ -5,7 +5,6 @@ import {
   cardTitle,
   whiteColor,
   blackColor,
-  secondaryColor,
   hexToRgb
 } from "assets/jss/material-kit-pro-react.jsx";
 
@@ -31,14 +30,14 @@ const signupPageStyle = {
     "&:before": {
       background: "rgba(" + hexToRgb(blackColor) + ", 0.5)"
     },
-    // "&:after": {
-    //   background:
-    //     "linear-gradient(60deg,rgba(" +
-    //     hexToRgb(primaryColor[4]) +
-    //     ",.56),rgba(" +
-    //     hexToRgb(primaryColor[5]) +
-    //     ",.95))"
-    // },
+    "&:after": {
+      background:
+        "linear-gradient(60deg,rgba(" +
+        hexToRgb(primaryColor[4]) +
+        ",.56),rgba(" +
+        hexToRgb(primaryColor[5]) +
+        ",.95))"
+    },
     "&:before,&:after": {
       position: "absolute",
       zIndex: "1",

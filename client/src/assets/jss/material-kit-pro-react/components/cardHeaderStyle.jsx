@@ -6,7 +6,6 @@ import {
   primaryCardHeader,
   roseCardHeader,
   blackColor,
-  secondaryCardHeader,
   hexToRgb
 } from "assets/jss/material-kit-pro-react.jsx";
 
@@ -72,8 +71,7 @@ const cardHeaderStyle = {
   dangerCardHeader,
   infoCardHeader,
   primaryCardHeader,
-  roseCardHeader,
-  secondaryCardHeader
+  roseCardHeader
 };
 
 export default cardHeaderStyle;

@@ -1,6 +1,8 @@
 ﻿using LatinFlow.Data;
+using LatinFlow.Data.Providers;
 using LatinFlow.Models.Domain;
 using LatinFlow.Models.Requests;
+using LatinFlow.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -11,9 +13,16 @@ using System.Threading.Tasks;
 
 namespace LatinFlow.Services
 {
-    public class UrlService : IUserService
+    public class UrlService : IUrlService
     {
         private string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+
+        private IDataProvider _dataProvider;
+
+        public UrlService(IDataProvider dataProvider)
+        {
+            _dataProvider = dataProvider;
+        }
 
         public int Create(UrlAddRequest model)
         {
@@ -31,8 +40,8 @@ namespace LatinFlow.Services
 
                     cmd.Parameters.Add(parm);
                     cmd.Parameters.AddWithValue("@Title", model.Title);
-                    cmd.Parameters.AddWithValue("@Location", model.Location);
-                    cmd.Parameters.AddWithValue("@DanceType", model.DanceType);
+                    // cmd.Parameters.AddWithValue("@Location", model.Location);
+                    // cmd.Parameters.AddWithValue("@DanceType", model.DanceType);
                     cmd.Parameters.AddWithValue("@Description", model.Description);
                     cmd.Parameters.AddWithValue("@Url", model.Url);
                     cmd.Parameters.AddWithValue("@Image", model.Image);
@@ -91,6 +100,23 @@ namespace LatinFlow.Services
                 }
             }
             return model;
+        }
+
+        public void Delete(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string cmdText = "Url_Delete";
+                SqlCommand cmd = new SqlCommand(cmdText, conn);
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Id", id);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+            }
         }
 
         private static UrlDomain Mapper(SqlDataReader reader)

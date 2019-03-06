@@ -22,7 +22,6 @@ import SectionsPage from "views/SectionsPage/SectionsPage.jsx";
 import ShoppingCartPage from "views/ShoppingCartPage/ShoppingCartPage.jsx";
 import SignupPage from "views/SignupPage/SignupPage.jsx";
 import ErrorPage from "views/ErrorPage/ErrorPage.jsx";
-import RegisterPage from "views/LoginPage/RegisterPage.jsx";
 
 var hist = createBrowserHistory();
 
@@ -45,8 +44,7 @@ ReactDOM.render(
       <Route path="/signup-page" component={SignupPage} />
       <Route path="/error-page" component={ErrorPage} />
       <Route path="/presentation-page" component={PresentationPage} />
-      <Route path="/register-page" component={RegisterPage} />
-      <Route path="/" component={RegisterPage} />
+      <Route path="/" component={BlogPostsPage} />
     </Switch>
   </Router>,
   document.getElementById("root")

@@ -12,7 +12,7 @@ namespace LatinFlow.Services.Interfaces
     {
         int Create(UrlAddRequest model);
         List<UrlDomain> SelectAll();
-        List<UrlDomain> SelectById(int id);
+        UrlDomain SelectById(int id);
         void Delete(int id);
     }
 }
