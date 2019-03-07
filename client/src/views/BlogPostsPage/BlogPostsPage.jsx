@@ -21,6 +21,22 @@ import SubscribeLine from "./Sections/SubscribeLine.jsx";
 import blogPostsPageStyle from "assets/jss/material-kit-pro-react/views/blogPostsPageStyle.jsx";
 
 class BlogPostsPage extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      Title: '',
+      Description: '',
+      Image: '',
+      Url: ''
+    }
+  }
+
+  handleChange = name => event => {
+    this.setState({
+      [name]: event.target.value
+    });
+  }
+
   componentDidMount() {
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
@@ -53,6 +69,7 @@ class BlogPostsPage extends React.Component {
         <div className={classes.main}>
           <div className={classes.container}>
             <SectionPills />
+
             {/* <SectionInterested /> */}
           </div>
           {/* <SectionImage /> */}
