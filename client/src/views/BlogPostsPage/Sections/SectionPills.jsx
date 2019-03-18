@@ -64,6 +64,7 @@ import color2 from "assets/img/examples/color2.jpg";
 import color3 from "assets/img/examples/color3.jpg";
 
 import sectionPillsStyle from "assets/jss/material-kit-pro-react/views/blogPostsSections/sectionPillsStyle.jsx";
+import { Grid } from "@material-ui/core";
 
 function SectionPills({ ...props }) {
   const { classes } = props;
@@ -71,76 +72,24 @@ function SectionPills({ ...props }) {
     <div className={classes.section}>
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={8} className={classes.textCenter}>
-          <NavPills
-            alignCenter
-            tabs={[
-              {
-                tabButton: "All",
-                tabContent: ""
-              },
-              {
-                tabButton: "Bachata",
-                tabContent: ""
-              },
-              {
-                tabButton: "Salsa",
-                tabContent: ""
-              },
-              {
-                tabButton: "Merengue",
-                tabContent: ""
-              },
-              {
-                tabButton: "Zouk",
-                tabContent: ""
-              }
-            ]}
-          />
           <div className={classes.tabSpace} />
         </GridItem>
       </GridContainer>
       <GridContainer>
         <GridItem xs={12} sm={6} md={6} lg={8}>
-          <Card blog plain>
-            <CardHeader image plain>
-              <a href="#pablo" onClick={e => e.preventDefault()}>
-                <img src={blog6} alt="..." />
-              </a>
-              <div
-                className={classes.coloredShadow}
-                style={{
-                  backgroundImage: `url(${blog6})`,
-                  opacity: "1"
-                }}
-              />
-            </CardHeader>
-            <CardBody plain>
-              <Danger>
-                <h6 className={classes.cardCategory}>
-                  <TrendingUp /> TRENDING
-                        </h6>
-              </Danger>
-              <h4 className={classes.cardTitle}>
-                <a href="#pablo" onClick={e => e.preventDefault()}>
-                  To Grow Your Business Start Focusing on Your Employees
-                        </a>
-              </h4>
+          <Card style={{ width: "30rem" }}>
+            <img
+              style={{ height: "300px", width: "100%", display: "block" }}
+              className={classes.imgCardTop}
+              src="https://images.unsplash.com/photo-1517303650219-83c8b1788c4c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd4c162d27ea317ff8c67255e955e3c8&auto=format&fit=crop&w=2691&q=80"
+              alt="Card-img-cap"
+            />
+            <CardBody>
+              <h4>{props.title}</h4>
+              <p>
+                {props.description}
+              </p>
             </CardBody>
-            {/* <CardFooter plain>
-              <div className={classes.author}>
-                <a href="#pablo" onClick={e => e.preventDefault()}>
-                  <img
-                    src={marc}
-                    alt="..."
-                    className={`${classes.imgRaised} ${classes.avatar}`}
-                  />
-                  <span>Mike John</span>
-                </a>
-              </div>
-              <div className={`${classes.stats} ${classes.mlAuto}`}>
-                <Schedule />5 min read
-                      </div>
-            </CardFooter> */}
           </Card>
         </GridItem>
       </GridContainer>
@@ -231,7 +180,7 @@ function SectionPills({ ...props }) {
           </Card>
         </GridItem>
       </GridContainer> */}
-      <GridItem xs={12} sm={12} md={12}>
+      {/* <GridItem xs={12} sm={12} md={12}>
         <Card
           center
           raised
@@ -265,7 +214,7 @@ function SectionPills({ ...props }) {
             </Tooltip>
           </CardBody>
         </Card>
-      </GridItem>
+      </GridItem> */}
     </div>
   );
 }

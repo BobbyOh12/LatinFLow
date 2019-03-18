@@ -1,4 +1,5 @@
 ﻿using HtmlAgilityPack;
+using LatinFlow.Models.Domain;
 using LatinFlow.Models.Requests;
 using LatinFlow.Models.Responses;
 using LatinFlow.Services.Interfaces;
@@ -95,6 +96,22 @@ namespace LatinFlow.Web.Controllers.Api
                 {
                     return Request.CreateErrorResponse(HttpStatusCode.BadGateway, "Model State");
                 }
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+            }
+        }
+
+
+        [Route("selectall"), HttpGet]
+        public HttpResponseMessage SelectAll()
+        {
+            try
+            {
+                ItemsResponse<UrlDomain> resp = new ItemsResponse<UrlDomain>();
+                resp.Items = _urlService.SelectAll();
+                return Request.CreateResponse(HttpStatusCode.OK, resp);
             }
             catch (Exception ex)
             {

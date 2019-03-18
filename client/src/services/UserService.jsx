@@ -14,4 +14,32 @@ export default class UserService {
             .then(onSuccess)
             .catch(onError)
     }
-}
+
+    static selectById(id, onSuccess, onError) {
+        axios
+            .get(`api/user/${id}`, { withCredentials: true })
+            .then(onSuccess)
+            .catch(onError)
+    }
+
+    static selectAll(onSuccess, onError) {
+        axios
+            .get('api/user/selectall', { withCredentials: true })
+            .then(onSuccess)
+            .catch(onError)
+    }
+
+    static delete(id, onSuccess, onError) {
+        axios
+            .delete(`api/user/${id}`, { withCredentials: true })
+            .then(onSuccess)
+            .catch(onError)
+    }
+
+    static update(id, data, onSuccess, onError) {
+        axios
+            .put(`api/user/${id}`, data, { withCredentials: true })
+            .then(onSuccess)
+            .catch(onError)
+    }
+} 

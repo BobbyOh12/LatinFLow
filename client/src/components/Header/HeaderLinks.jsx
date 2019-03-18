@@ -100,7 +100,28 @@ function HeaderLinks({ ...props }) {
           buttonIcon={ViewCarousel}
         /> */}
         <Button
-          // href="#pablo"
+          className={classes.navLink}
+          onClick={e => e.preventDefault()}
+          color="transparent"
+        >
+          <Link to="/about-us">
+            Admin
+        </Link>
+        </Button>
+      </ListItem>
+      <ListItem className={classes.listItem}>
+        {/* <Button
+          noLiPadding
+          navDropdown
+          hoverColor={dropdownHoverColor}
+          buttonText="Home"
+          buttonProps={{
+            className: classes.navLink,
+            color: "transparent"
+          }}
+          buttonIcon={ViewCarousel}
+        /> */}
+        <Button
           className={classes.navLink}
           onClick={e => e.preventDefault()}
           color="transparent"
@@ -117,8 +138,8 @@ function HeaderLinks({ ...props }) {
           onClick={e => e.preventDefault()}
           color="transparent"
         >
-          <Link to="/">
-            Classes
+          <Link to="/blog-posts">
+            Blogs
           </Link>
         </Button>
       </ListItem>

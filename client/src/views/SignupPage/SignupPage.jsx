@@ -58,6 +58,11 @@ class Components extends React.Component {
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
   }
+
+  onRegister = evt => {
+    this.props.history.push('/login-page')
+  }
+
   render() {
     const { classes, ...rest } = this.props;
     return (
@@ -209,6 +214,7 @@ class Components extends React.Component {
                             }}
                           />
                           <CustomInput
+                          type="password"
                             formControlProps={{
                               fullWidth: true,
                               className: classes.customFormControlClasses
@@ -218,6 +224,7 @@ class Components extends React.Component {
                                 <InputAdornment
                                   position="start"
                                   className={classes.inputAdornment}
+                                  type="password"
                                 >
                                   <Icon className={classes.inputAdornmentIcon}>
                                     lock_outline
@@ -260,7 +267,7 @@ class Components extends React.Component {
                             }
                           />
                           <div className={classes.textCenter}>
-                            <Button round color="primary">
+                            <Button onClick={this.onRegister} round color="primary">
                               Register
                             </Button>
                           </div>
@@ -272,7 +279,7 @@ class Components extends React.Component {
               </GridItem>
             </GridContainer>
           </div>
-          <Footer
+          {/* <Footer
             content={
               <div>
                 <div className={classes.left}>
@@ -319,7 +326,7 @@ class Components extends React.Component {
                 </div>
               </div>
             }
-          />
+          /> */}
         </div>
       </div>
     );

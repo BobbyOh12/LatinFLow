@@ -12,7 +12,9 @@
     "animate.css": "3.7.0",
     "axios": "^0.18.0",
     "classnames": "2.2.6",
+    "formik": "^1.5.1",
     "history": "4.7.2",
+    "material-ui": "^0.20.2",
     "moment": "2.24.0",
     "node-sass": "4.11.0",
     "nouislider": "13.1.0",
@@ -26,8 +28,11 @@
     "react-router-dom": "4.3.1",
     "react-scripts": "2.1.5",
     "react-slick": "0.23.2",
+    "react-strap": "^0.0.1",
     "react-swipeable-views": "0.13.1",
-    "react-tagsinput": "3.19.0"
+    "react-table": "^6.9.2",
+    "react-tagsinput": "3.19.0",
+    "reactstrap": "^7.1.0"
   },
   "scripts": {
     "start": "react-scripts start",

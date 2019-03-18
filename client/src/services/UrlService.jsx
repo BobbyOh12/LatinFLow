@@ -1,9 +1,9 @@
 import axios from 'axios'
 
 export default class UrlService {
-    static create(data, onSucces, onError) {
+    static create(data, onSuccess, onError) {
         axios
-            .post('api/url', data, { withCredentials: true })
+            .post('api/url/create', data, { withCredentials: true })
             .then(onSuccess)
             .catch(onError)
     }
@@ -21,4 +21,5 @@ export default class UrlService {
             .then(onSuccess)
             .catch(onError)
     }
+
 } 

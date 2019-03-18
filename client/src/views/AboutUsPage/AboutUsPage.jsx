@@ -20,20 +20,100 @@ import SectionTeam from "views/AboutUsPage/Sections/SectionTeam.jsx";
 import SectionServices from "views/AboutUsPage/Sections/SectionServices.jsx";
 import SectionOffice from "views/AboutUsPage/Sections/SectionOffice.jsx";
 import SectionContact from "views/AboutUsPage/Sections/SectionContact";
+import Table from '@material-ui/core/Table';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import { Router, Route, Switch } from "react-router";
+import { Link } from "react-router-dom";
+import UserRow from "./UserRow.jsx"
 
 import aboutUsStyle from "assets/jss/material-kit-pro-react/views/aboutUsStyle.jsx";
+import UserService from "../../services/UserService.jsx";
+import { createBrowserHistory } from "history";
 
 class AboutUsPage extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      data: [],
+      state: ''
+    }
+  }
+
   componentDidMount() {
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
+    UserService.selectAll(this.onSelectAllSuccess, this.onError)
   }
+
+  onSelectAllSuccess = response => {
+    console.log(response)
+    const data = response.data.items;
+    const newData = data.map(this.createRow)
+    this.setState({ data: newData })
+  }
+
+  onError = error => {
+    console.log(error)
+  }
+
+  createRow = (data, index) => {
+    return (
+      <UserRow
+        index={index}
+        key={data.id}
+        id={data.id}
+        firstName={data.firstName}
+        middleInitial={data.middleInitial}
+        lastName={data.lastName}
+        email={data.email}
+        createdDate={data.createdDate}
+        modifiedDate={data.modifiedDate}
+        modifiedBy={data.modifiedBy}
+        onDeleteClick={this.onDeleteClick}
+        onEditClick={this.onEditClick}
+      />
+    )
+  }
+
+  onAddClick = evt => {
+    this.props.history.push('/form-page')
+  }
+
+  onDeleteClick = evt => {
+    const id = evt.target.id;
+    console.log(id)
+    UserService.delete(id, this.onDeleteSuccess, this.onError)
+  }
+
+  onEditClick = evt => {
+    // wind
+    const id = evt.target.id;
+    // UserService.selectById(id,this.onEditSuccess, this.onError)
+    this.props.history.push(`/${id}`)
+    // window.location = "localhost:3000/form-page";
+  }
+  
+  onEditSuccess = response => {
+    console.log(response)
+    const data = response.data.items;
+    
+  }
+
+  onDeleteSuccess = response => {
+    console.log("success")
+    UserService.selectAll(this.onSelectAllSuccess, this.onError)
+  }
+
   render() {
     const { classes } = this.props;
+
     return (
       <div>
         <Header
-          brand="Material Kit PRO React"
+          brand="Latin Flow"
           links={<HeaderLinks dropdownHoverColor="info" />}
           fixed
           color="transparent"
@@ -54,25 +134,49 @@ class AboutUsPage extends React.Component {
                   classes.textCenter
                 )}
               >
-                <h1 className={classes.title}>About Us</h1>
+                <h1 className={classes.title}>Adminstration</h1>
                 <h4>
-                  Meet the amazing team behind this project and find out more
-                  about how we work.
+                  {/* Meet the amazing team behind this project and find out more
+                  about how we work. */}
                 </h4>
               </GridItem>
             </GridContainer>
           </div>
         </Parallax>
-        <div className={classNames(classes.main, classes.mainRaised)}>
-          <div className={classes.container}>
-            <SectionDescription />
-            <SectionTeam />
+        {/* <div className={classNames(classes.main, classes.mainRaised)}> */}
+        <div className={classes.container}>
+          {/* <Tables /> */}
+          <br />
+          <Link to="/form-page/form">
+            Add User
+          </Link>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <th>Id</th>
+                <th>First Name</th>
+                <th>Middle Initial</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Created Date</th>
+                <th>Modified Date</th>
+                <th>Modified By</th>
+                <th>Edit</th>
+                <th>Delete</th>
+              </TableRow>
+            </TableHead>
+            <tbody>
+              {this.state.data}
+            </tbody>
+          </Table>
+          {/* <SectionDescription /> */}
+          {/* <SectionTeam />
             <SectionServices />
             <SectionOffice />
-            <SectionContact />
-          </div>
+            <SectionContact /> */}
+          {/* </div> */}
         </div>
-        <Footer
+        {/* <Footer
           content={
             <div>
               <div className={classes.left}>
@@ -119,7 +223,7 @@ class AboutUsPage extends React.Component {
               </div>
             </div>
           }
-        />
+        /> */}
       </div>
     );
   }

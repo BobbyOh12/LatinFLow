@@ -26,6 +26,10 @@ import loginPageStyle from "assets/jss/material-kit-pro-react/views/loginPageSty
 import image from "assets/img/ballroom.jpg";
 import UserService from "../../services/UserService";
 
+// redux
+import {login} from '../../redux/actions/SessionAction';
+import {connect} from 'react-redux';
+
 class LoginPage extends React.Component {
   constructor(props) {
     super(props)
@@ -49,11 +53,13 @@ class LoginPage extends React.Component {
       password: this.state.password
     }
     console.log(data)
-    UserService.login(data, this.onLoginSuccess, this.onError)
+    this.props.history.push('/about-us')
+    // UserService.login(data, this.onLoginSuccess, this.onError)
   }
 
   onLoginSuccess = response => {
     console.log(response, "login success")
+    this.props.history.push(`/about-us`)
   }
 
   onError = error => {
@@ -173,7 +179,7 @@ class LoginPage extends React.Component {
               </GridItem>
             </GridContainer>
           </div>
-          <Footer
+          {/* <Footer
             className={classes.footer}
             content={
               <div>
@@ -221,11 +227,20 @@ class LoginPage extends React.Component {
                 </div>
               </div>
             }
-          />
+          /> */}
         </div>
       </div>
     );
   }
 }
 
-export default withStyles(loginPageStyle)(LoginPage);
+function mapStateToProps = (state) => {
+  const {loggingIn} = state.session;
+  const {loggedIn} = state.session;
+  return {
+    loggingIn,
+    loggedIn
+  };
+}
+
+export default connect(mapStateToProps)withStyles(loginPageStyle)(LoginPage);

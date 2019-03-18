@@ -19,9 +19,11 @@ namespace LatinFlow.Web.Controllers.Api
     public class UserController : ApiController
     {
         private IUserService _svc;
+        private IAuthenticationService _auth;
 
-        public UserController(IUserService svc)
+        public UserController(IUserService svc, IAuthenticationService auth)
         {
+            _auth = auth;
             _svc = svc; 
         }
 
@@ -105,6 +107,7 @@ namespace LatinFlow.Web.Controllers.Api
             {
                 if (ModelState.IsValid)
                 {
+                    model.ModifiedBy = "Bobby";
                     _svc.Update(model);
                     SuccessResponse response = new SuccessResponse();
                     return Request.CreateResponse(HttpStatusCode.OK, response);
@@ -133,6 +136,21 @@ namespace LatinFlow.Web.Controllers.Api
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
+        }
+
+        public HttpResponseMessage GetCurrent()
+        {
+            ItemResponse<IUserAuthData> response = new ItemResponse<IUserAuthData>();
+            response.Item = _auth.GetCurrentUser();
+            return Request.CreateResponse(HttpStatusCode.OK, response);
+        }
+
+        [Route("logout"), HttpGet]
+        public HttpResponseMessage Logout()
+        {
+            _auth.LogOut();
+            SuccessResponse response = new SuccessResponse();
+            return Request.CreateResponse(HttpStatusCode.OK, response);
         }
     }
 }
